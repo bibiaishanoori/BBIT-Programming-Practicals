@@ -1,0 +1,7 @@
+﻿*.exe
+*.o
+*.obj
+numbers.txt
+numbers_c.txt
+students.csv
+students_c.csv
