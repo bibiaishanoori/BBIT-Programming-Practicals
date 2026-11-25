@@ -1,69 +1,75 @@
+﻿
 #include <iostream>
 #include <string>
 #include <iomanip>
-
 using namespace std;
 
 int main() {
 
-    // Variables
+    // VARIABLE DECLARATIONS
     string studentName;
     string course;
 
-    int score1, score2, score3, score4;
+    int score1, score2, score3;
     int totalScore;
-    int highestScore;
 
     double average;
     double percentage;
 
-    char grade;
-
+    // CONSTANT DECLARATION
     const int MAX_SCORE = 100;
 
-    // Welcome Message
-    cout << "====================================" << endl;
+    // WELCOME BANNER
+    cout << "========================================" << endl;
     cout << "       STUDENT SCORE CALCULATOR" << endl;
-    cout << "====================================" << endl;
+    cout << "========================================" << endl;
 
-    // Student Information
-    cout << "\nEnter your full name: ";
+    // INPUT STUDENT NAME
+    cout << "Enter student name: ";
     getline(cin, studentName);
 
-    cout << "Enter your course (BBIT/BCS): ";
+    // INPUT COURSE
+    cout << "Enter course (BBIT/BCS): ";
     getline(cin, course);
 
-    // Enter Test Scores
-    cout << "\nEnter Test 1 score: ";
+    // INPUT TEST SCORES
+    cout << "Enter score for Test 1: ";
     cin >> score1;
 
-    cout << "Enter Test 2 score: ";
+    cout << "Enter score for Test 2: ";
     cin >> score2;
 
-    cout << "Enter Test 3 score: ";
+    cout << "Enter score for Test 3: ";
     cin >> score3;
 
-    cout << "Enter Test 4 score: ";
-    cin >> score4;
-        if (score1 < 0 || score1 > 100 ||
-        score2 < 0 || score2 > 100 ||
-        score3 < 0 || score3 > 100 ||
-        score4 < 0 || score4 > 100) {
+    // VALIDATE SCORES
+    if (score1 < 0 || score1 > MAX_SCORE ||
+        score2 < 0 || score2 > MAX_SCORE ||
+        score3 < 0 || score3 > MAX_SCORE) {
 
-        cout << "Invalid score! Scores must be between 0 and 100." << endl;
-
+        cout << "Error: Scores must be between 0 and 100." << endl;
         return 1;
     }
 
-    // Calculate Total Score
-    totalScore = score1 + score2 + score3 + score4;
+    // CALCULATIONS
+    totalScore = score1 + score2 + score3;
+    average = totalScore / 3.0;
+    percentage = (totalScore / 300.0) * 100;
 
-    // Calculate Average and Percentage
-    average = totalScore / 4.0;
+    // FIND HIGHEST SCORE
+    int highestScore = score1;
 
-    percentage = (totalScore / 400.0) * 100;
+    if (score2 > highestScore) {
+        highestScore = score2;
+    }
 
-    // Calculate Letter Grade
+    if (score3 > highestScore) {
+        highestScore = score3;
+    }
+
+    // GRADE CALCULATION
+    char grade;
+
     if (percentage >= 90) {
         grade = 'A';
     }
@@ -80,51 +86,28 @@ int main() {
         grade = 'F';
     }
 
-    // Find Highest Score
-    highestScore = score1;
+    // DISPLAY REPORT CARD
+    cout << endl;
+    cout << "========================================" << endl;
+    cout << "              REPORT CARD" << endl;
+    cout << "========================================" << endl;
 
-    if (score2 > highestScore) {
-        highestScore = score2;
-    }
-
-    if (score3 > highestScore) {
-        highestScore = score3;
-    }
-
-    if (score4 > highestScore) {
-        highestScore = score4;
-    }
-
-    // Display Report Card
-    cout << "\n====================================" << endl;
-    cout << "             REPORT CARD" << endl;
-    cout << "====================================" << endl;
-
-    cout << "Student Name: " << studentName << endl;
+    cout << "Student: " << studentName << endl;
     cout << "Course: " << course << endl;
-
-    cout << "------------------------------------" << endl;
 
     cout << "Test 1: " << score1 << "/" << MAX_SCORE << endl;
     cout << "Test 2: " << score2 << "/" << MAX_SCORE << endl;
     cout << "Test 3: " << score3 << "/" << MAX_SCORE << endl;
-    cout << "Test 4: " << score4 << "/" << MAX_SCORE << endl;
 
-    cout << "------------------------------------" << endl;
-
-    cout << "Total Score: " << totalScore << "/400" << endl;
-    cout << "Highest Score: " << highestScore << endl;
+    cout << "Total: " << totalScore << "/300" << endl;
 
     cout << fixed << setprecision(2);
-
     cout << "Average: " << average << endl;
     cout << "Percentage: " << percentage << "%" << endl;
 
-    cout << "Letter Grade: " << grade << endl;
+    cout << "Highest Score: " << highestScore << endl;
+    cout << "Grade: " << grade << endl;
 
-    cout << "------------------------------------" << endl;
-
-    // Pass or Fail
     if (percentage >= 50) {
         cout << "Result: PASS" << endl;
     }
@@ -132,9 +115,7 @@ int main() {
         cout << "Result: FAIL" << endl;
     }
 
-    cout << "====================================" << endl;
-    cout << "       THANK YOU FOR USING!" << endl;
-    cout << "====================================" << endl;
+    cout << "========================================" << endl;
 
     return 0;
 }
